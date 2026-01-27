@@ -1,5 +1,6 @@
 import os
 from google.auth.transport.requests import Request
+from google.auth.exceptions import RefreshError
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
 from utils.config import SCOPES
@@ -19,7 +20,11 @@ def authenticate(force_auth = False) -> None:
     return creds
 
   if os.path.exists("res/token.json"):
-    creds = Credentials.from_authorized_user_file("res/token.json", SCOPES)
+    try: 
+      creds = Credentials.from_authorized_user_file("res/token.json", SCOPES)
+    except RefreshError: 
+      pass
+
   # If there are no (valid) credentials available, let the user log in.
   if not creds or not creds.valid:
     if creds and creds.expired and creds.refresh_token:

@@ -4,3 +4,4 @@ __pycache__/
 
 res/credentials.json
 res/token.json
+test.py
