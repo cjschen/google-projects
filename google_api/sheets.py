@@ -3,10 +3,10 @@ from pprint import pp
 from google_api.credentials import authenticate
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from utils.config import SPREADSHEET_ID, SAMPLE_RANGE_NAME
+from utils.config import SAMPLE_RANGE_NAME
 
 
-def write_transactions(transactions: list[list]): 
+def write_transactions(transactions: list[list], spreadsheet_id: str): 
   creds = authenticate()
   try:
     service = build("sheets", "v4", credentials=creds)
@@ -16,7 +16,7 @@ def write_transactions(transactions: list[list]):
         service.spreadsheets()
         .values()
         .append(
-            spreadsheetId=SPREADSHEET_ID,
+            spreadsheetId=spreadsheet_id,
             range=SAMPLE_RANGE_NAME,
             valueInputOption="USER_ENTERED",
             body=body,

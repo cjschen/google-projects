@@ -7,12 +7,12 @@ categories = {}
 
 class Transation:
 
-  def __init__(self, message_id, str_date, merchant, str_amount, category = None):
+  def __init__(self, message_id, date, merchant, str_amount, category = None):
     self.message_id = message_id
 
-    self.date = datetime.strptime(str_date.text, '%b %d, %Y at %I:%M %p ET')
-    self.merchant = merchant.text
-    self.str_amount = str_amount.text
+    self.date = date
+    self.merchant = merchant
+    self.str_amount = str_amount
     self.set_category()
 
   def sheet_value(self):
