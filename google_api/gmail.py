@@ -17,6 +17,7 @@ def get_transactions() -> tuple[list[Transation], list[str]]:
     # Call the Gmail API
     service = build("gmail", "v1", credentials=creds)
     results = service.users().messages().list(userId="me", labelIds=[AUTOMATION_LABEL]).execute()
+    
     for message in results.get("messages", []):
       msg = service.users().messages().get(userId="me", id=message["id"]).execute()
       body = base64.urlsafe_b64decode(msg["payload"]["body"]["data"]).decode('UTF8')
