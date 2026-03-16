@@ -7,5 +7,6 @@ res/token.json
 test.py
 
 categories.json
+test_emails
 
 utils/config.py
