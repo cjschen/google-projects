@@ -19,9 +19,9 @@ def authenticate(force_auth = False) -> None:
   if creds and not force_auth: 
     return creds
 
-  if os.path.exists("res/token.json"):
+  if os.path.exists("secrets/token.json"):
     try: 
-      creds = Credentials.from_authorized_user_file("res/token.json", SCOPES)
+      creds = Credentials.from_authorized_user_file("secrets/token.json", SCOPES)
     except RefreshError: 
       pass
 
@@ -31,11 +31,11 @@ def authenticate(force_auth = False) -> None:
       creds.refresh(Request())
     else:
       flow = InstalledAppFlow.from_client_secrets_file(
-          "res/credentials.json", SCOPES
+          "secrets/credentials.json", SCOPES
       )
       creds = flow.run_local_server(port=0)
     # Save the credentials for the next run
-    with open("res/token.json", "w") as token:
+    with open("secrets/token.json", "w") as token:
       token.write(creds.to_json())
 
   return creds

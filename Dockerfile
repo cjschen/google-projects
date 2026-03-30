@@ -17,7 +17,7 @@ RUN poetry install
 COPY google_api ./google_api
 COPY utils ./utils
 COPY models ./models
-COPY res ./res
+# COPY res ./res
 COPY main.py ./
 
 ENTRYPOINT [ "poetry", "run", "python", "main.py" ]

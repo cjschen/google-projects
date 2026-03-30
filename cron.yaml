@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: finance-sync
+spec:
+  schedule: "0 2,8 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: app-config
+              configMap:
+                name: app-config
+            - name: app-secrets
+              secret:
+                secretName: app-secrets
+          containers:
+          - name: finance-sync
+            image: cjwrites/finance_sync:latest
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - poetry run python main.py
+            volumeMounts:
+              - name: app-config
+                mountPath: /app/res
+              - name: app-secrets
+                mountPath: /app/secrets
+          restartPolicy: Never

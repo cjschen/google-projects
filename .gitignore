@@ -2,11 +2,11 @@
 __pycache__/
 .vscode
 
-res/credentials.json
-res/token.json
+secrets/credentials.json
+secrets/token.json
 test.py
 
-categories.json
+res/categories.json
 test_emails
 
 utils/config.py

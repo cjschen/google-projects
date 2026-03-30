@@ -12,7 +12,7 @@ This will automatically pull from credentials.json and open up a browser for aut
 If credentials are expired: 
 
 ```
-rm res/credentials.json
+rm secrets/credentials.json
 ```
 
 ## TODO list 
@@ -24,3 +24,7 @@ rm res/credentials.json
     - [ ] refactor to return transaction list 
     - [ ] order transactions list by date
 - [ ] add e2e tests with google api mocks
+- [ ] investigate Plaid (like Yodelee) for hobby purposes
+- Build MCP server (scary) https://www.youtube.com/watch?v=5PBaiMEPBsE
+  - integrate w/ Google Home/Gemini
+  
