@@ -1,5 +1,5 @@
 import webbrowser
-from utils.config import SPREADSHEET_ID
+from financesync.utils.config import SPREADSHEET_ID
 
 # This doesn't work currently
 if __name__ == "__main__":

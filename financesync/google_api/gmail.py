@@ -1,10 +1,10 @@
 from pprint import pp
-from google_api.credentials import authenticate
+from financesync.google_api.credentials import authenticate
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from models.transaction import Transation
-from utils.config import AUTOMATION_LABEL, CITI_AUTOMATION_LABEL
-from google_api.email_reader import ChaseEmailParser, CitiEmailParser
+from financesync.models.transaction import Transation
+from financesync.utils.config import AUTOMATION_LABEL, CITI_AUTOMATION_LABEL
+from financesync.google_api.email_reader import ChaseEmailParser, CitiEmailParser
 
 
 def get_transactions() -> tuple[list[Transation], list[str]]:

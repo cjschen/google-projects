@@ -1,7 +1,7 @@
 from pprint import pp
-from google_api.gmail import get_citi_transactions, get_transactions, unlabel
-from google_api.sheets import write_transactions
-from utils.config import SPREADSHEET_ID, JOINT_SPREADSHEET_ID
+from financesync.google_api.gmail import get_citi_transactions, get_transactions, unlabel
+from financesync.google_api.sheets import write_transactions
+from financesync.utils.config import SPREADSHEET_ID
 
 def main():
 
@@ -16,7 +16,7 @@ def main():
 
   pp(transactions)
 
-  write_transactions(transactions, JOINT_SPREADSHEET_ID)
+  write_transactions(transactions, SPREADSHEET_ID)
 
   unlabel(message_ids)
 
@@ -30,7 +30,7 @@ def main():
 
   pp(transactions)
 
-  write_transactions(transactions, JOINT_SPREADSHEET_ID)
+  write_transactions(transactions, SPREADSHEET_ID)
 
   unlabel(message_ids)
 

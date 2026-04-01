@@ -1,13 +1,13 @@
 from abc import ABCMeta, abstractmethod
 from pprint import pp
 from datetime import datetime
-from google_api.credentials import authenticate
+from financesync.google_api.credentials import authenticate
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import base64
 from bs4 import BeautifulSoup
-from models.transaction import Transation
-from utils.config import AUTOMATION_LABEL, CITI_AUTOMATION_LABEL
+from financesync.models.transaction import Transation
+from financesync.utils.config import AUTOMATION_LABEL, CITI_AUTOMATION_LABEL
 import re
 
 

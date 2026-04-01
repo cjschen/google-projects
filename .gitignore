@@ -4,9 +4,8 @@ __pycache__/
 
 secrets/credentials.json
 secrets/token.json
-test.py
+sandbox.py
 
 res/categories.json
-test_emails
 
 utils/config.py

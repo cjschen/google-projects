@@ -1,9 +1,9 @@
 
 from pprint import pp
-from google_api.credentials import authenticate
+from financesync.google_api.credentials import authenticate
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from utils.config import SAMPLE_RANGE_NAME
+from financesync.utils.config import SAMPLE_RANGE_NAME
 
 
 def write_transactions(transactions: list[list], spreadsheet_id: str): 

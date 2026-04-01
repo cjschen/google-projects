@@ -3,7 +3,7 @@ from google.auth.transport.requests import Request
 from google.auth.exceptions import RefreshError
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
-from utils.config import SCOPES
+from financesync.utils.config import SCOPES
 
 creds = None
 
