@@ -3,7 +3,7 @@ __pycache__/
 .vscode
 
 secrets/credentials.json
-secrets/token.json
+data/token.json
 sandbox.py
 
 res/categories.json

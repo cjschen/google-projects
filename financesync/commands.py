@@ -2,8 +2,8 @@ from pprint import pp
 from financesync.google_api.gmail import get_citi_transactions, get_transactions, unlabel
 from financesync.google_api.sheets import write_transactions
 from financesync.utils.config import SPREADSHEET_ID
-
-def main():
+from financesync.google_api.credentials import authenticate, remove_credentials
+def sync():
 
   transactions = None
   message_ids = None
@@ -34,6 +34,16 @@ def main():
 
   unlabel(message_ids)
 
+import webbrowser
+from financesync.utils.config import SPREADSHEET_ID
 
+# This doesn't work currently
+def open():
+    webbrowser.open_new_tab(f"https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}")
+
+def refresh():
+    remove_credentials()
+    authenticate()
+    
 if __name__ == "__main__":
-  main()
+  sync()

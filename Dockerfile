@@ -12,13 +12,14 @@ RUN pip install poetry
 
 COPY poetry.lock pyproject.toml ./
 
-RUN poetry install
+COPY financesync ./financesync
 
-COPY google_api ./google_api
-COPY utils ./utils
-COPY models ./models
-# COPY res ./res
 COPY main.py ./
+
+# hacky workaround for python packaging purposes for testing
+COPY README.md ./ 
+
+RUN poetry install
 
 ENTRYPOINT [ "poetry", "run", "python", "main.py" ]
 # docker build cjwrites/finance_sync

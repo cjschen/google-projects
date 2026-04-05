@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - cron.yaml
+  - persistent.yaml
 
 configMapGenerator:
   - name: app-config
@@ -12,4 +13,3 @@ secretGenerator:
   - name: app-secrets
     files:
       - secrets/credentials.json
-      - secrets/token.json

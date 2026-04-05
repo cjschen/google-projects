@@ -15,6 +15,9 @@ spec:
             - name: app-secrets
               secret:
                 secretName: app-secrets
+            - name: app-pv
+              persistentVolumeClaim:
+                claimName: app-pvc
           containers:
           - name: finance-sync
             image: cjwrites/finance_sync:latest
@@ -28,4 +31,7 @@ spec:
                 mountPath: /app/res
               - name: app-secrets
                 mountPath: /app/secrets
+              - name: app-pv
+                mountPath: "/app/data"
           restartPolicy: Never
+          
