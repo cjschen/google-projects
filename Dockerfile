@@ -14,12 +14,12 @@ COPY poetry.lock pyproject.toml ./
 
 COPY financesync ./financesync
 
-COPY main.py ./
-
 # hacky workaround for python packaging purposes for testing
 COPY README.md ./ 
 
+COPY cli.py ./ 
+
 RUN poetry install
 
-ENTRYPOINT [ "poetry", "run", "python", "main.py" ]
+ENTRYPOINT [ "poetry", "run", "python", "cli.py", "--sync" ]
 # docker build cjwrites/finance_sync

@@ -40,3 +40,6 @@ class Transation:
 
   def __str__(self) -> str:
     return self.sheet_value + ""
+  
+  def __repr__(self):
+    return f"Transaction[Merchant:{self.merchant},Date:{datetime.strftime(self.date, '%m-%d-%Y')},Amount:{self.str_amount},Category:{self.category},]"

@@ -45,7 +45,7 @@ class EmailReader(metaclass=ABCMeta):
                 try:
                     msg = self.service.users().messages().get(userId="me", id=message["id"]).execute()
                     trans = self.get_transaction(message["id"], msg)
-                    transactions.append(trans.sheet_value())
+                    transactions.append(trans)
                     ids.append(trans.message_id)
                 except Exception as e:
                     print(f"Failed to parse message {message.get('id')}: {e}")

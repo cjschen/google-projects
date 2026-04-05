@@ -7,19 +7,23 @@ import webbrowser
 
 def sync():
   
-  chase_transactions, message_ids = get_transactions() 
+  chase_transactions, chase_message_ids = get_transactions() 
   
-  citi_transactions, message_ids = get_citi_transactions() 
+  citi_transactions, citi_message_ids = get_citi_transactions() 
 
   transactions = chase_transactions + citi_transactions
 
+  message_ids = citi_message_ids + chase_message_ids
+
   transactions.sort(key=lambda x: x.date)
 
-  write_transactions(transactions, SPREADSHEET_ID)
+  transaction_transformed = [t.sheet_value() for t in transactions]
+
+  write_transactions(transaction_transformed, SPREADSHEET_ID)
 
   unlabel(message_ids)
 
-  pp(transactions)
+  pp(transaction_transformed)
 
 def open():
     webbrowser.open_new_tab(f"https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}")
