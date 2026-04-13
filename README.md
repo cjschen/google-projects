@@ -15,7 +15,7 @@ You will also need to install `poetry` or `uv`
 
 ### For Chase:
 
-![Chase Alerts](chasealerts.png)
+![Chase Alerts](docs/chasealerts.png)
 
 ### For Citi: 
 On the top left, click `Profile` > `Account Alerts`
