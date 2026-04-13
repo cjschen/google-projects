@@ -8,4 +8,4 @@ sandbox.py
 
 res/categories.json
 
-utils/config.py
+financesync/utils/config.py

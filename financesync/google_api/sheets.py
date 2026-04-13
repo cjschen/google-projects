@@ -3,7 +3,7 @@ from pprint import pp
 from financesync.google_api.credentials import authenticate
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from financesync.utils.config import SAMPLE_RANGE_NAME
+from financesync.utils.config import EXPENSES_RANGE
 
 
 def write_transactions(transactions: list[list], spreadsheet_id: str): 
@@ -17,7 +17,7 @@ def write_transactions(transactions: list[list], spreadsheet_id: str):
         .values()
         .append(
             spreadsheetId=spreadsheet_id,
-            range=SAMPLE_RANGE_NAME,
+            range=EXPENSES_RANGE,
             valueInputOption="USER_ENTERED",
             body=body,
         )

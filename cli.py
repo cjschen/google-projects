@@ -1,14 +1,17 @@
 import click
-from financesync.commands import open, sync, refresh
+from financesync.commands import create_filters, open, sync, refresh
 
 @click.command()
 @click.option("--sync", "sync_flag", is_flag=True, help="Sync transactions from Gmail to Google Sheets")
 @click.option("--open", "open_flag", is_flag=True, help="Open the Google Sheet in the browser")
 @click.option("--force-refresh", "force_refresh_flag", is_flag=True, help="Refresh Google API credentials")
-def run(sync_flag, open_flag, force_refresh_flag):
-    if not sync_flag and not open_flag and not force_refresh_flag:
+@click.option("--setup", "setup_flag", is_flag=True, help="Sets up Gmail labels and filters for email parsing")
+def run(sync_flag, open_flag, force_refresh_flag, setup_flag):
+    if not sync_flag and not open_flag and not force_refresh_flag and not setup_flag:
         print("No command provided. Use --help for more information.")
 
+    if setup_flag:
+        create_filters()
     if force_refresh_flag:
         refresh()
     if sync_flag:

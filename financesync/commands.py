@@ -1,5 +1,6 @@
 from pprint import pp
-from financesync.google_api.gmail import get_citi_transactions, get_transactions, unlabel
+from financesync.google_api.email_reader import ChaseEmailParser, CitiEmailParser
+from financesync.google_api.gmail import create_filter, get_citi_transactions, get_transactions, unlabel
 from financesync.google_api.sheets import write_transactions
 from financesync.utils.config import SPREADSHEET_ID
 from financesync.google_api.credentials import authenticate, remove_credentials
@@ -31,6 +32,10 @@ def open():
 def refresh():
     remove_credentials()
     authenticate()
+
+def create_filters():
+    create_filter(ChaseEmailParser())
+    create_filter(CitiEmailParser())
     
 if __name__ == "__main__":
   sync()

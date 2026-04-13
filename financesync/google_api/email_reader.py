@@ -7,11 +7,11 @@ from googleapiclient.errors import HttpError
 import base64
 from bs4 import BeautifulSoup
 from financesync.models.transaction import Transation
-from financesync.utils.config import AUTOMATION_LABEL, CITI_AUTOMATION_LABEL
+from financesync.utils.config import CHASE_AUTOMATION_LABEL, CITI_AUTOMATION_LABEL
 import re
 
 
-class EmailReader(metaclass=ABCMeta):
+class EmailParser(metaclass=ABCMeta):
     def __init__(self):
         self.service = self._build_service()
 
@@ -21,6 +21,18 @@ class EmailReader(metaclass=ABCMeta):
 
     @abstractmethod
     def get_label(self) -> str:
+        pass
+
+    @abstractmethod
+    def get_bank_email(self) -> str:
+        pass
+
+    @abstractmethod
+    def get_label_name(self) -> str:
+        pass
+    
+    @abstractmethod
+    def get_subject(self) -> str:
         pass
 
     def get_transaction(self, msg_id, msg: dict) -> Transation:
@@ -73,9 +85,19 @@ class EmailReader(metaclass=ABCMeta):
         pass
 
 
-class ChaseEmailParser(EmailReader):
+class ChaseEmailParser(EmailParser):
+
+    def get_bank_email(self) -> str:
+        return "no.reply.alerts@chase.com"
+    
+    def get_subject(self) -> str:
+        return "You made a transaction."
+
     def get_label(self) -> str:
-        return AUTOMATION_LABEL
+        return CHASE_AUTOMATION_LABEL
+
+    def get_label_name(self) -> str:
+        return "ChaseBudgetAutomation"
 
     def decode_body(self, msg: dict) -> str:
         data = msg.get("payload", {}).get("body", {}).get("data")
@@ -99,9 +121,19 @@ class ChaseEmailParser(EmailReader):
         return None
 
 
-class CitiEmailParser(EmailReader):
+class CitiEmailParser(EmailParser):
+
+    def get_bank_email(self) -> str:
+        return "alerts@info6.citi.com) subject:()"
+    
+    def get_subject(self) -> str:
+        return "You are receiving this alert because your transaction was more than the level you set."
+
     def get_label(self) -> str:
         return CITI_AUTOMATION_LABEL
+
+    def get_label_name(self) -> str:
+        return "CitiBudgetAutomation"
 
     def decode_body(self, msg: dict) -> str:
         parts = msg.get("payload", {}).get("parts", [])
