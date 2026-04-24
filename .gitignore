@@ -9,3 +9,7 @@ sandbox.py
 res/categories.json
 
 financesync/utils/config.py
+
+# Systemd files 
+finance.service
+finance.timer
